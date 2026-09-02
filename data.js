@@ -26,7 +26,7 @@ const defaultSiteData = {
       "Custom Web Applications"
     ],
     subtitle: "Looking for a modern, ultra-fast, and 100% mobile-responsive website to grow your business or personal brand? Connect directly with me on WhatsApp for immediate discussion, custom designs, and rapid delivery!",
-    ctaPrimaryText: "Order on WhatsApp (8200890373)",
+    ctaPrimaryText: "Chat on WhatsApp",
     ctaSecondaryText: "View Portfolio & Demos",
     cardTitle: "Web Developer",
     cardStatus: "Online on WhatsApp",
