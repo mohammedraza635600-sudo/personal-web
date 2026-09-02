@@ -105,13 +105,9 @@
         <a href="#faq" class="nav-link hover:text-emerald-400 transition-colors">FAQ</a>
       </nav>
 
-      <!-- Right Action & WhatsApp Button -->
+      <!-- Right Action -->
       <div class="flex items-center gap-3">
-        <!-- Direct WhatsApp Call-to-Action -->
-        <a id="header-whatsapp-btn" href="https://wa.me/918200890373?text=Hello!%20I%20would%20like%20to%20inquire%20about%20building%20a%20website." target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-semibold px-4 py-2.5 rounded-xl text-sm transition-all duration-200 shadow-lg shadow-whatsapp/20 hover:scale-105 active:scale-95">
-          <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span>Chat on WhatsApp</span>
-        </a>
+        <!-- Header WhatsApp button removed: hero CTA + floating widget already cover this action -->
 
         <!-- Mobile Menu Toggle Button -->
         <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
@@ -159,10 +155,11 @@
             <span id="hero-title-gradient" class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
               I Build High-Converting
             </span><br />
-            <span class="text-white">
+            <span class="text-white" aria-hidden="true">
               <span id="typewriter-text" class="text-emerald-400 underline decoration-emerald-500/40 decoration-wavy underline-offset-8"></span>
               <span class="typing-cursor font-light text-emerald-400">|</span>
             </span>
+            <span class="sr-only">Business Websites, E-Commerce Stores, Portfolio Websites, High-Converting Landing Pages and Custom Web Applications</span>
           </h1>
 
           <!-- Subtitle / Hook -->
@@ -175,7 +172,7 @@
             <!-- Main WhatsApp CTA -->
             <a id="hero-primary-cta" href="https://wa.me/918200890373?text=Hello!%20I%20would%20like%20to%20inquire%20about%20building%20a%20website.%20Please%20share%20details%20and%20pricing." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-7 py-4 rounded-xl text-base shadow-xl shadow-whatsapp/25 transition-all hover:scale-105 active:scale-95 group">
               <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
-              <span id="hero-primary-text">Chat on WhatsApp (8200890373)</span>
+              <span id="hero-primary-text">Chat on WhatsApp</span>
             </a>
 
             <!-- Secondary CTA -->
@@ -196,10 +193,10 @@
         <div class="lg:col-span-5">
           <div class="relative">
             <!-- Glow effect behind card -->
-            <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-lg opacity-20"></div>
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-lg opacity-10"></div>
             
             <!-- Quick WhatsApp Contact Card -->
-            <div class="relative bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl space-y-6">
+            <div class="relative bg-slate-800/70 border border-slate-700/60 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-lg space-y-6">
               
               <div class="flex items-center justify-between pb-4 border-b border-slate-700/70">
                 <div class="flex items-center gap-3">
@@ -239,11 +236,11 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="py-20 bg-slate-950/60 border-t border-slate-800/80 relative">
+  <section id="services" class="py-16 bg-slate-950/60 border-t border-slate-800/80 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
         <h2 class="text-xs sm:text-sm font-bold tracking-widest text-emerald-400">What I Can Build For You</h2>
         <p class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Full-Suite Web Development Services</p>
         <p class="text-slate-400 text-sm sm:text-base">Custom tailored websites engineered for performance, clean aesthetic, and high conversions.</p>
@@ -258,7 +255,7 @@
   </section>
 
   <!-- Portfolio / Sample Projects Section -->
-  <section id="portfolio" class="py-20 relative">
+  <section id="portfolio" class="py-16 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -286,11 +283,11 @@
   </section>
 
   <!-- Pricing Packages Section -->
-  <section id="pricing" class="py-20 bg-slate-950/70 border-t border-slate-800/80">
+  <section id="pricing" class="py-16 bg-slate-950/70 border-t border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <h2 class="text-xs sm:text-sm font-bold uppercase tracking-widest text-emerald-400">Transparent & Affordable</h2>
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <h2 class="text-xs sm:text-sm font-bold tracking-widest text-emerald-400">Transparent & Affordable</h2>
         <p class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Popular Website Packages</p>
         <p class="text-slate-400 text-sm sm:text-base">Choose the perfect tier that matches your budget and project requirements.</p>
       </div>
@@ -304,13 +301,13 @@
   </section>
 
   <!-- Why Choose Us / Work Process -->
-  <section id="why-us" class="py-20 relative">
+  <section id="why-us" class="pt-20 pb-12 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         <!-- Left: Why Choose Me -->
-        <div class="lg:col-span-6 space-y-6 text-left">
+        <div class="lg:col-span-6 space-y-6 text-left bg-slate-800/30 border border-slate-800 rounded-3xl p-6 sm:p-8">
           <span class="text-xs font-bold tracking-widest text-emerald-400" id="whyus-tagline-display">Why Work With Me</span>
           <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white m-0" id="whyus-heading-display">Direct Communication, Zero Agency Markup</h2>
           <p class="text-slate-300 text-sm sm:text-base leading-relaxed" id="whyus-desc-display">
@@ -343,11 +340,11 @@
   </section>
 
   <!-- Interactive WhatsApp Quote / Project Estimator Form -->
-  <section id="contact" class="py-20 bg-slate-950/80 border-t border-slate-800/80">
+  <section id="contact" class="pt-12 pb-20 bg-slate-950/80 border-t border-slate-800/80">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Get an Instant Quotation</span>
+        <span class="text-xs font-bold tracking-widest text-emerald-400">Get an Instant Quotation</span>
         <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Project Requirement Form</h2>
         <p class="text-slate-400 text-xs sm:text-sm">
           Fill in your project specifications below. Clicking submit will automatically format and send your inquiry directly to WhatsApp (<span id="form-whatsapp-display">8200890373</span>).
@@ -399,7 +396,7 @@
           </div>
 
           <!-- Project Details / Notes -->
-          <div class="space-y-2">
+          <div class="space-y-2 pt-2">
             <label for="project-notes" class="block text-xs font-semibold text-slate-300">Project Requirements & Notes</label>
             <textarea id="project-notes" rows="7" aria-describedby="project-notes-hint" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
             <p id="project-notes-hint" class="text-xs text-slate-500">Example: payment gateway, 5 pages, appointment booking, reference links.</p>
@@ -423,7 +420,7 @@
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="py-20 relative">
+  <section id="faq" class="py-16 relative">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
@@ -486,18 +483,18 @@
         <!-- Col 4: Direct Contact -->
         <div class="space-y-3">
           <h3 class="font-heading font-bold text-white text-sm">Direct Contact</h3>
-          <div class="space-y-2">
-            <a id="footer-whatsapp-link" href="https://wa.me/918200890373" target="_blank" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold">
-              <i class="fa-brands fa-whatsapp text-base"></i> <span id="footer-whatsapp-display">+91 8200890373</span>
+          <div class="space-y-2.5">
+            <a id="footer-whatsapp-link" href="https://wa.me/918200890373" target="_blank" class="flex items-center gap-2.5 text-slate-300 hover:text-emerald-400 font-semibold">
+              <i class="fa-brands fa-whatsapp text-sm w-4 text-center shrink-0"></i> <span id="footer-whatsapp-display">+91 8200890373</span>
             </a>
-            <div class="flex items-center gap-2 text-slate-300">
-              <i class="fa-solid fa-phone text-xs"></i> <span id="footer-phone-display">8200890373</span>
+            <div class="flex items-center gap-2.5 text-slate-300">
+              <i class="fa-solid fa-phone text-sm w-4 text-center shrink-0"></i> <span id="footer-phone-display">8200890373</span>
             </div>
-            <div class="flex items-center gap-2 text-slate-300">
-              <i class="fa-solid fa-envelope text-xs"></i> <span id="footer-email-display">contact@veloraweb.com</span>
+            <div class="flex items-center gap-2.5 text-slate-300">
+              <i class="fa-solid fa-envelope text-sm w-4 text-center shrink-0"></i> <span id="footer-email-display">contact@veloraweb.com</span>
             </div>
-            <div class="flex items-center gap-2 text-slate-300">
-              <i class="fa-solid fa-location-dot text-xs"></i> <span id="footer-location-display">Global & Remote Services</span>
+            <div class="flex items-center gap-2.5 text-slate-300">
+              <i class="fa-solid fa-location-dot text-sm w-4 text-center shrink-0"></i> <span id="footer-location-display">Global & Remote Services</span>
             </div>
           </div>
         </div>
@@ -519,7 +516,7 @@
   </footer>
 
   <!-- Floating WhatsApp Chat Widget -->
-  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+  <div class="fixed bottom-8 right-6 sm:bottom-10 sm:right-8 z-50 flex items-center gap-3">
     
     <!-- Pulse Message Bubble (hidden: redundant with the floating button itself) -->
     <div id="whatsapp-bubble" class="hidden items-center gap-2 bg-slate-900/95 border border-emerald-500/40 text-slate-100 px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md text-xs">
