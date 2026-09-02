@@ -287,8 +287,6 @@ function initDevCraftSite() {
 
     // Announcement Bar
     setText('announcement-text', site.general?.announcementText || 'Special Limited-Time Offer: Get your custom website ready within 3-5 days!');
-    setText('announcement-link', site.general?.announcementLinkText || 'Order on WhatsApp →');
-    setHref('announcement-link', buildWhatsAppUrl(site.general?.announcementOfferQuery));
 
     // Floating WhatsApp
     setHref('floating-whatsapp-btn', buildWhatsAppUrl());
@@ -302,15 +300,13 @@ function initDevCraftSite() {
     setText('hero-title-line1', site.hero?.titleLine1 || 'Need a Website?');
     setText('hero-title-gradient', site.hero?.titleGradient || 'I Build High-Converting');
     setText('hero-subtitle-display', site.hero?.subtitle || '');
-    setText('hero-primary-text', site.hero?.ctaPrimaryText || `Order on WhatsApp (${phone})`);
+    setText('hero-primary-text', site.hero?.ctaPrimaryText || `Chat on WhatsApp (${phone})`);
     setText('hero-secondary-text', site.hero?.ctaSecondaryText || 'View Portfolio & Demos');
     setHref('hero-primary-cta', buildWhatsAppUrl('Hello! I would like to inquire about building a website. Please share details and pricing.'));
 
     // Hero Right Card
     setText('card-title-display', site.hero?.cardTitle || 'Web Developer');
     setText('card-phone-display', `+91 ${phone}`);
-    setText('card-btn-num', phone);
-    setHref('card-direct-btn', `https://wa.me/${fullPhone}`);
 
     // Trust Badges
     renderTrustBadgesDOM(site.hero?.trustBadges || internalDefaultData.hero.trustBadges);
@@ -443,10 +439,10 @@ function initDevCraftSite() {
       card.innerHTML = `
         <div class="relative h-48 bg-gradient-to-tr from-slate-800 to-slate-700 p-6 flex flex-col justify-between overflow-hidden">
           <div class="flex justify-between items-center z-10">
-            <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase">${escapeHtml(proj.category || 'Demo')}</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">${escapeHtml(proj.category || 'Demo')}</span>
             <span class="text-xs text-slate-400"><i class="fa-solid fa-eye mr-1"></i> Live Ready</span>
           </div>
-          <div class="text-center z-10">
+          <div class="text-left z-10">
             <i class="fa-solid ${escapeHtml(proj.icon || 'fa-laptop-code')} text-4xl text-emerald-400/80 mb-2"></i>
             <h3 class="font-heading font-bold text-lg text-white">${escapeHtml(proj.title)}</h3>
           </div>
@@ -454,12 +450,12 @@ function initDevCraftSite() {
         </div>
         <div class="p-6 space-y-4">
           <p class="text-xs text-slate-300">${escapeHtml(proj.desc)}</p>
-          <div class="flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+          <div class="flex flex-wrap gap-1.5 text-xs text-slate-400">
             ${tagsHtml}
           </div>
           <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between">
-            <a href="${buildWhatsAppUrl(proj.whatsappQuery || `Hi! I would like a website similar to ${proj.title}.`)}" target="_blank" class="w-full text-center py-2 px-3 rounded-lg bg-whatsapp/15 hover:bg-whatsapp text-emerald-400 hover:text-slate-950 font-bold text-xs transition-all">
-              <i class="fa-brands fa-whatsapp mr-1"></i> I Want Similar Website
+            <a href="${buildWhatsAppUrl(proj.whatsappQuery || `Hi! I would like a website similar to ${proj.title}.`)}" target="_blank" class="w-full text-center py-2.5 px-3 rounded-lg bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-xs shadow-md shadow-whatsapp/20 transition-all">
+              <i class="fa-brands fa-whatsapp mr-1"></i> I Want a Similar Website
             </a>
           </div>
         </div>
@@ -479,8 +475,8 @@ function initDevCraftSite() {
       const isPopular = plan.isPopular;
 
       card.className = isPopular
-        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100'
-        : 'relative bg-slate-800/50 border border-slate-700 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-600 transition-all';
+        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl pt-12 pb-8 px-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100'
+        : 'relative bg-slate-800/50 border border-slate-700 rounded-3xl pt-10 pb-8 px-8 flex flex-col justify-between hover:border-slate-600 transition-all';
 
       const popularBadge = isPopular
         ? `<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-max whitespace-nowrap text-center bg-emerald-500 text-slate-950 text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">${escapeHtml(plan.popularBadge || '🔥 Most Popular Choice')}</div>`
@@ -514,7 +510,7 @@ function initDevCraftSite() {
 
         <div class="pt-8 mt-auto">
           <a href="${buildWhatsAppUrl(plan.whatsappQuery || `Hi! I want to book the ${plan.tierName} package.`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 ${isPopular ? 'py-3.5 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-extrabold shadow-lg shadow-whatsapp/25 hover:scale-105' : 'py-3 bg-transparent border-2 border-emerald-500/60 hover:bg-whatsapp hover:border-whatsapp text-emerald-400 hover:text-slate-950 font-bold'} px-4 rounded-xl text-sm transition-all">
-            <i class="fa-brands fa-whatsapp text-lg"></i> Book on WhatsApp
+            <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
           </a>
         </div>
       `;
