@@ -1,0 +1,134 @@
+/* Custom CSS for DevCraft Web Solutions Portfolio */
+
+/* Base smooth scrolling and styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #0f172a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+/* Typing Cursor */
+.typing-cursor {
+  display: inline-block;
+  animation: blink 0.9s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Active Nav Links */
+.nav-link.active {
+  color: #34d399;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #10b981;
+  border-radius: 2px;
+}
+
+/* Service & Project Card Hover Transitions */
+.service-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1), 0 8px 10px -6px rgba(16, 185, 129, 0.1);
+}
+
+.project-item {
+  transition: all 0.3s ease-in-out;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Filter Button Active State */
+.filter-btn.active {
+  background-color: #10b981 !important;
+  color: #022c22 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+}
+
+/* WhatsApp Pulse Animation */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulse-ring 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+/* Accordion Animation */
+.faq-answer {
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Toast Styles */
+.toast-msg {
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

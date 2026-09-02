@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velora Admin Panel | Full Website Customizer & CMS</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              500: '#10b981',
+              600: '#059669',
+            },
+            whatsapp: '#25D366',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+    
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+      color: #34d399;
+      border-left: 3px solid #10b981;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- Lock Modal / Passcode Screen -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-md w-full text-center shadow-2xl space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-3xl mx-auto">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <div>
+        <h2 class="font-heading font-extrabold text-2xl text-white">Velora Admin Panel</h2>
+        <p class="text-xs text-slate-400 mt-1">Enter your admin passcode to customize your website content.</p>
+        <p class="text-[11px] text-emerald-400 font-mono mt-1">(Default Passcode: <b>admin123</b>)</p>
+      </div>
+      <form id="auth-form" class="space-y-4">
+        <div>
+          <input type="password" id="admin-passcode" placeholder="Enter Passcode..." required class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-center font-mono text-lg text-white focus:outline-none focus:border-emerald-500 transition-colors" />
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20">
+          Unlock Admin Dashboard &rarr;
+        </button>
+        <p id="auth-error" class="text-xs text-red-400 hidden">Incorrect passcode. Try again!</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Top Admin Bar -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-400 via-teal-400 to-cyan-400 flex items-center justify-center text-slate-950 font-extrabold text-xl shadow-md">
+        <svg class="w-5 h-5 text-slate-950 fill-current" viewBox="0 0 24 24">
+          <path d="M2.5 4.5h4.5l5 12 5-12h4.5l-7.5 17h-4z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-heading font-extrabold text-lg text-white">Velora CMS & Customizer</h1>
+        <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Live Sync Mode Active
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="flex items-center gap-3">
+      <a href="index.html" target="_blank" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-2 transition-colors">
+        <i class="fa-solid fa-arrow-up-right-from-square text-emerald-400"></i>
+        <span class="hidden sm:inline">View Live Website</span>
+      </a>
+
+      <button id="top-save-btn" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-extrabold flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20 hover:scale-105">
+        <i class="fa-solid fa-floppy-disk"></i>
+        <span>Save Changes</span>
+      </button>
+
+      <button id="lock-btn" title="Lock Panel" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+    
+    <!-- Sidebar Tabs Navigation -->
+    <aside class="w-full md:w-64 bg-slate-900/90 border-r border-slate-800 p-4 space-y-1 overflow-y-auto">
+      <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-2">Website Sections</div>
+      
+      <button class="tab-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-general">
+        <i class="fa-solid fa-gear text-emerald-400 w-5"></i>
+        <span>General & WhatsApp</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-hero">
+        <i class="fa-solid fa-rocket text-teal-400 w-5"></i>
+        <span>Hero & Typewriter</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-services">
+        <i class="fa-solid fa-briefcase text-cyan-400 w-5"></i>
+        <span>Services Manager</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-projects">
+        <i class="fa-solid fa-laptop-code text-indigo-400 w-5"></i>
+        <span>Portfolio Projects</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-pricing">
+        <i class="fa-solid fa-tags text-amber-400 w-5"></i>
+        <span>Pricing Packages</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-whyus">
+        <i class="fa-solid fa-circle-check text-pink-400 w-5"></i>
+        <span>Process & Benefits</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-faqs">
+        <i class="fa-solid fa-circle-question text-purple-400 w-5"></i>
+        <span>FAQ Manager</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-footer">
+        <i class="fa-solid fa-shoe-prints text-slate-400 w-5"></i>
+        <span>Footer & About</span>
+      </button>
+
+      <div class="pt-4 border-t border-slate-800/80 my-2"></div>
+
+      <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider px-3 py-1 flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Supabase Cloud</span>
+      </div>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-emerald-400 hover:text-white hover:bg-emerald-500/10 transition-all text-left" data-tab="tab-inquiries">
+        <i class="fa-solid fa-inbox text-emerald-400 w-5"></i>
+        <span>Leads & Inquiries</span>
+        <span id="leads-count-badge" class="ml-auto px-2 py-0.5 rounded-full bg-emerald-500/20 text-[10px] font-mono font-bold text-emerald-300">0</span>
+      </button>
+
+      <button class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all text-left" data-tab="tab-export">
+        <i class="fa-solid fa-cloud-arrow-down text-cyan-400 w-5"></i>
+        <span>Backup & Export Center</span>
+      </button>
+    </aside>
+
+    <!-- Main Content Tab Panels Container -->
+    <main class="flex-1 bg-slate-950 p-6 sm:p-8 overflow-y-auto max-h-[calc(100vh-80px)]">
+      
+      <!-- TAB 1: GENERAL & WHATSAPP SETTINGS -->
+      <section id="tab-general" class="tab-content space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">General & WhatsApp Configuration</h2>
+          <p class="text-xs text-slate-400 mt-1">Configure your contact numbers, brand name, header announcement bar, and floating widget.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6">
+          
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">WhatsApp Phone Number (for Direct Chat & Orders)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 text-sm font-mono">+91</span>
+              <input type="text" id="gen-whatsapp" class="w-full pl-12 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:border-emerald-500 focus:outline-none" placeholder="8200890373" />
+            </div>
+            <p class="text-[11px] text-slate-500">Number where all inquiries, form orders & clicks will be routed.</p>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Calling Phone Number</label>
+            <input type="text" id="gen-phone" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" placeholder="8200890373" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Brand Name</label>
+            <input type="text" id="gen-brandName" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" placeholder="Velora" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Brand Tagline / Subtitle</label>
+            <input type="text" id="gen-brandSubtitle" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" placeholder="Web Solutions" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Contact Email</label>
+            <input type="email" id="gen-email" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" placeholder="contact@veloraweb.com" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Location / Service Area</label>
+            <input type="text" id="gen-location" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" placeholder="Global & Remote Services" />
+          </div>
+
+        </div>
+
+        <!-- Top Announcement Bar Customizer -->
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <h3 class="font-heading font-bold text-base text-white">Top Announcement Bar & Offer</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Announcement Banner Text</label>
+              <input type="text" id="gen-announcementText" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Banner Link Text</label>
+              <input type="text" id="gen-announcementLinkText" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Floating WhatsApp Bubble Message</label>
+            <input type="text" id="gen-floatingBubble" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- TAB 2: HERO SECTION CUSTOMIZER -->
+      <section id="tab-hero" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">Hero Section & Typewriter Effect</h2>
+          <p class="text-xs text-slate-400 mt-1">Customize the top headline, animated rotating typewriter keywords, description, and trust badges.</p>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-5">
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Top Pill Badge Text</label>
+            <input type="text" id="hero-badgeText" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Main Title (Line 1)</label>
+              <input type="text" id="hero-titleLine1" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Gradient Title (Line 2)</label>
+              <input type="text" id="hero-titleGradient" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Typewriter Animated Words (Comma Separated)</label>
+            <input type="text" id="hero-typewriterWords" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none font-mono" placeholder="Business Websites, E-Commerce Stores, Portfolio Websites" />
+            <p class="text-[11px] text-slate-500">Words separated by commas will cycle through the animated typewriter effect.</p>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Hero Subtitle Paragraph</label>
+            <textarea id="hero-subtitle" rows="3" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Primary CTA Button Text</label>
+              <input type="text" id="hero-ctaPrimary" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-xs font-semibold text-slate-300">Secondary CTA Button Text</label>
+              <input type="text" id="hero-ctaSecondary" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <h3 class="font-heading font-bold text-base text-white">4 Trust Highlights / Badges</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="hero-trust-badges-container">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- TAB 3: SERVICES MANAGER -->
+      <section id="tab-services" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-white">Services Manager</h2>
+            <p class="text-xs text-slate-400 mt-1">Add, edit, or delete the services shown on your website.</p>
+          </div>
+          <button id="add-service-btn" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New Service</span>
+          </button>
+        </div>
+
+        <div id="services-list-container" class="space-y-4">
+          <!-- Rendered dynamically by admin.js -->
+        </div>
+      </section>
+
+
+      <!-- TAB 4: PORTFOLIO PROJECTS -->
+      <section id="tab-projects" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-white">Portfolio Projects & Demos</h2>
+            <p class="text-xs text-slate-400 mt-1">Manage demo cards and designs that visitors can filter and inquire about.</p>
+          </div>
+          <button id="add-project-btn" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New Project</span>
+          </button>
+        </div>
+
+        <div id="projects-list-container" class="space-y-4">
+          <!-- Rendered dynamically by admin.js -->
+        </div>
+      </section>
+
+
+      <!-- TAB 5: PRICING PACKAGES -->
+      <section id="tab-pricing" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">Pricing Packages & Plans</h2>
+          <p class="text-xs text-slate-400 mt-1">Customize your pricing tiers, features checklists, delivery times, and highlighted plan.</p>
+        </div>
+
+        <div id="pricing-list-container" class="space-y-6">
+          <!-- Rendered dynamically by admin.js -->
+        </div>
+      </section>
+
+
+      <!-- TAB 6: WHY US & PROCESS -->
+      <section id="tab-whyus" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">Process & Benefits Customizer</h2>
+          <p class="text-xs text-slate-400 mt-1">Customize the value propositions and the 4-step client ordering workflow.</p>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Section Tagline</label>
+            <input type="text" id="whyus-tagline" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Section Main Heading</label>
+            <input type="text" id="whyus-heading" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Description Paragraph</label>
+            <textarea id="whyus-desc" rows="3" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- 4-Steps -->
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <h3 class="font-heading font-bold text-base text-white">4 Simple Steps Workflow</h3>
+          <div id="whyus-steps-container" class="space-y-4">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- TAB 7: FAQ MANAGER -->
+      <section id="tab-faqs" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-white">FAQ Manager</h2>
+            <p class="text-xs text-slate-400 mt-1">Add, edit, or remove frequently asked questions for your clients.</p>
+          </div>
+          <button id="add-faq-btn" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-xs font-bold flex items-center gap-2 transition-all">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New FAQ</span>
+          </button>
+        </div>
+
+        <div id="faqs-list-container" class="space-y-4">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+
+
+      <!-- TAB 8: FOOTER & ABOUT -->
+      <section id="tab-footer" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">Footer & Branding</h2>
+          <p class="text-xs text-slate-400 mt-1">Customize footer copyright text and short brand bio.</p>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 space-y-4">
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Footer Short Bio / Summary</label>
+            <textarea id="footer-about" rows="3" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none"></textarea>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-slate-300">Footer Copyright Notice</label>
+            <input type="text" id="footer-copyright" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB: LEADS & INQUIRIES (SUPABASE CLOUD)        -->
+      <!-- ============================================== -->
+      <section id="tab-inquiries" class="tab-content hidden space-y-6 max-w-5xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="font-heading font-bold text-2xl text-white flex items-center gap-2">
+              <i class="fa-solid fa-inbox text-emerald-400"></i>
+              <span>Customer Leads & Inquiries</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Real-time inquiries submitted via your website and stored in Supabase Cloud Database.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="refresh-leads-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-arrows-rotate text-emerald-400"></i>
+              <span>Refresh Inquiries</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inquiries Table Card -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-slate-950/80 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                <tr>
+                  <th class="py-3.5 px-4">Client Name</th>
+                  <th class="py-3.5 px-4">Phone / WhatsApp</th>
+                  <th class="py-3.5 px-4">Website Type</th>
+                  <th class="py-3.5 px-4">Budget</th>
+                  <th class="py-3.5 px-4">Notes</th>
+                  <th class="py-3.5 px-4">Received Date</th>
+                  <th class="py-3.5 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leads-table-body" class="divide-y divide-slate-800/60 font-sans">
+                <tr>
+                  <td colspan="7" class="py-8 text-center text-slate-500 text-xs">
+                    <i class="fa-solid fa-spinner fa-spin mr-2 text-emerald-400"></i> Loading inquiries from Supabase...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- TAB 9: SAVE & EXPORT CENTER                   -->
+      <!-- ============================================== -->
+      <section id="tab-export" class="tab-content hidden space-y-6 max-w-4xl">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="font-heading font-bold text-2xl text-white">Save, Export & Backup Center</h2>
+          <p class="text-xs text-slate-400 mt-1">Export your customized website as a standalone production file, backup your JSON data, or reset to factory defaults.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
+          <!-- Save Live Changes -->
+          <div class="bg-slate-900/70 border border-emerald-500/30 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white">Save Changes to Browser & Cloud</h3>
+              <p class="text-xs text-slate-400">Instantly applies all customizations to your live `index.html` website on this device and syncs to Supabase.</p>
+            </div>
+            <button id="main-save-btn" class="w-full py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-xs transition-all shadow-md shadow-emerald-500/20">
+              Save All Changes Now
+            </button>
+          </div>
+
+          <!-- Export Standalone HTML -->
+          <div class="bg-slate-900/70 border border-cyan-500/30 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-file-arrow-down"></i>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white">Download Standalone `index.html`</h3>
+              <p class="text-xs text-slate-400">Downloads a fully compiled, self-contained HTML file with all your custom data permanently baked in. Ready to host on Netlify, Vercel, or GitHub!</p>
+            </div>
+            <button id="export-html-btn" class="w-full py-3 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-extrabold text-xs transition-all shadow-md shadow-cyan-500/20">
+              <i class="fa-solid fa-download mr-1"></i> Download Standalone HTML
+            </button>
+          </div>
+
+          <!-- Export JSON Backup -->
+          <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-code-compare"></i>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white">Export / Backup JSON Data</h3>
+              <p class="text-xs text-slate-400">Save a copy of your configuration data file for safe keeping.</p>
+            </div>
+            <button id="export-json-btn" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs transition-all">
+              <i class="fa-solid fa-file-code mr-1"></i> Export Data Backup (.json)
+            </button>
+          </div>
+
+          <!-- Factory Reset -->
+          <div class="bg-slate-900/70 border border-red-500/30 rounded-2xl p-6 space-y-4 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-rotate-left"></i>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white">Reset to Default Content</h3>
+              <p class="text-xs text-slate-400">Clears all custom edits and resets the website back to original starter templates.</p>
+            </div>
+            <button id="reset-data-btn" class="w-full py-3 px-4 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/30 font-bold text-xs transition-all">
+              <i class="fa-solid fa-trash-can mr-1"></i> Reset All Data to Default
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 border border-emerald-500 text-emerald-400 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-semibold">
+    <i class="fa-solid fa-circle-check text-base"></i>
+    <span id="toast-text">Changes saved successfully!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
