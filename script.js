@@ -26,7 +26,7 @@ const internalDefaultData = {
       "Custom Web Applications"
     ],
     subtitle: "Looking for a modern, ultra-fast, and 100% mobile-responsive website to grow your business or personal brand? Connect directly with me on WhatsApp for immediate discussion, custom designs, and rapid delivery!",
-    ctaPrimaryText: "Order on WhatsApp (8200890373)",
+    ctaPrimaryText: "Chat on WhatsApp",
     ctaSecondaryText: "View Portfolio & Demos",
     cardTitle: "Web Developer",
     cardStatus: "Online on WhatsApp",
@@ -300,7 +300,7 @@ function initDevCraftSite() {
     setText('hero-title-line1', site.hero?.titleLine1 || 'Need a Website?');
     setText('hero-title-gradient', site.hero?.titleGradient || 'I Build High-Converting');
     setText('hero-subtitle-display', site.hero?.subtitle || '');
-    setText('hero-primary-text', site.hero?.ctaPrimaryText || `Chat on WhatsApp (${phone})`);
+    setText('hero-primary-text', site.hero?.ctaPrimaryText || 'Chat on WhatsApp');
     setText('hero-secondary-text', site.hero?.ctaSecondaryText || 'View Portfolio & Demos');
     setHref('hero-primary-cta', buildWhatsAppUrl('Hello! I would like to inquire about building a website. Please share details and pricing.'));
 
@@ -406,7 +406,7 @@ function initDevCraftSite() {
             <i class="fa-solid ${escapeHtml(srv.icon || 'fa-code')}"></i>
           </div>
           <h3 class="font-heading font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(srv.title)}</h3>
-          <p class="text-slate-300 text-sm leading-relaxed pb-2">${escapeHtml(srv.desc)}</p>
+          <p class="text-slate-300 text-sm leading-relaxed pb-2 min-h-[72px] sm:min-h-[48px]">${escapeHtml(srv.desc)}</p>
           <ul class="space-y-2 text-xs text-slate-300 pt-4 mt-2 border-t border-slate-700/60">
             ${featuresHtml}
           </ul>
@@ -612,7 +612,7 @@ function initDevCraftSite() {
   const typingSpeed = 80;
   const deletingSpeed = 45;
   const pauseAfterTyping = 1800;
-  const pauseAfterDeleting = 400;
+  const pauseAfterDeleting = 120;
 
   function typeEffect() {
     if (!typewriterElement) return;
