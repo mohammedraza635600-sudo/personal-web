@@ -380,32 +380,14 @@ function initDevCraftSite() {
     });
   }
 
-  // 3b. Quick Services Links (Hero Right Card)
+  // 3b. Quick Services intro line (Hero Right Card).
+  // Per-service mini-links were removed here to avoid duplicating the WhatsApp
+  // CTAs and content already shown in the Services section below (see the
+  // "Direct WhatsApp" button rendered right after this in the card).
   function renderQuickServicesDOM(services) {
     const container = document.getElementById('quick-services-links');
     if (!container) return;
-    container.innerHTML = '<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tap a service to inquire instantly:</p>';
-
-    const topServices = services.slice(0, 3);
-    topServices.forEach(srv => {
-      const a = document.createElement('a');
-      a.href = buildWhatsAppUrl(srv.whatsappQuery || `Hi, I want to inquire about ${srv.title}`);
-      a.target = '_blank';
-      a.className = 'flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-emerald-500/60 hover:bg-slate-900 transition-all group';
-      a.innerHTML = `
-        <div class="flex items-center gap-3">
-          <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-sm group-hover:scale-110 transition-transform">
-            <i class="fa-solid ${escapeHtml(srv.icon || 'fa-code')}"></i>
-          </span>
-          <div>
-            <div class="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(srv.title)}</div>
-            <div class="text-[11px] text-slate-400 truncate max-w-[200px]">${escapeHtml(srv.desc)}</div>
-          </div>
-        </div>
-        <i class="fa-brands fa-whatsapp text-emerald-400 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
-      `;
-      container.appendChild(a);
-    });
+    container.innerHTML = '<p class="text-xs font-semibold text-slate-400 tracking-wide">Get a reply in minutes on WhatsApp.</p>';
   }
 
   // 3c. Services Grid
@@ -428,13 +410,13 @@ function initDevCraftSite() {
             <i class="fa-solid ${escapeHtml(srv.icon || 'fa-code')}"></i>
           </div>
           <h3 class="font-heading font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(srv.title)}</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(srv.desc)}</p>
-          <ul class="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-700/60">
+          <p class="text-slate-300 text-sm leading-relaxed pb-2">${escapeHtml(srv.desc)}</p>
+          <ul class="space-y-2 text-xs text-slate-300 pt-4 mt-2 border-t border-slate-700/60">
             ${featuresHtml}
           </ul>
         </div>
         <div class="pt-6">
-          <a href="${buildWhatsAppUrl(srv.whatsappQuery || `Hi! I want to order ${srv.title}`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-700/60 hover:bg-whatsapp text-slate-200 hover:text-slate-950 font-semibold text-xs transition-all">
+          <a href="${buildWhatsAppUrl(srv.whatsappQuery || `Hi! I want to order ${srv.title}`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-xs shadow-md shadow-whatsapp/20 transition-all">
             <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
           </a>
         </div>
@@ -466,7 +448,7 @@ function initDevCraftSite() {
           </div>
           <div class="text-center z-10">
             <i class="fa-solid ${escapeHtml(proj.icon || 'fa-laptop-code')} text-4xl text-emerald-400/80 mb-2"></i>
-            <h4 class="font-heading font-bold text-lg text-white">${escapeHtml(proj.title)}</h4>
+            <h3 class="font-heading font-bold text-lg text-white">${escapeHtml(proj.title)}</h3>
           </div>
           <div class="absolute inset-0 bg-emerald-500/5 group-hover:bg-emerald-500/10 transition-colors"></div>
         </div>
@@ -497,11 +479,11 @@ function initDevCraftSite() {
       const isPopular = plan.isPopular;
 
       card.className = isPopular
-        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100 lg:-translate-y-2'
-        : 'bg-slate-800/50 border border-slate-700 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-600 transition-all';
+        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl p-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100'
+        : 'relative bg-slate-800/50 border border-slate-700 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-600 transition-all';
 
       const popularBadge = isPopular
-        ? `<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">${escapeHtml(plan.popularBadge || '🔥 Most Popular Choice')}</div>`
+        ? `<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-max whitespace-nowrap text-center bg-emerald-500 text-slate-950 text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">${escapeHtml(plan.popularBadge || '🔥 Most Popular Choice')}</div>`
         : '';
 
       const featuresHtml = (plan.features || [])
@@ -512,7 +494,7 @@ function initDevCraftSite() {
         ${popularBadge}
         <div class="space-y-6">
           <div class="space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">${escapeHtml(plan.tierName || 'Plan')}</span>
+            <span class="text-xs font-bold tracking-wider text-emerald-400">${escapeHtml(plan.tierName || 'Plan')}</span>
             <h3 class="font-heading font-bold text-2xl text-white">${escapeHtml(plan.title || 'Package')}</h3>
             <p class="text-xs text-slate-400">${escapeHtml(plan.desc || '')}</p>
           </div>
@@ -522,7 +504,7 @@ function initDevCraftSite() {
               <span class="text-3xl sm:text-4xl font-extrabold text-white">${escapeHtml(plan.price || '₹0')}</span>
               <span class="text-xs text-slate-400">${escapeHtml(plan.unit || '/ one-time')}</span>
             </div>
-            <span class="text-[11px] text-emerald-400 font-semibold block mt-1">${escapeHtml(plan.deliveryTime || 'Delivery in 3-5 Days')}</span>
+            <span class="text-xs text-emerald-400 font-semibold block mt-1">${escapeHtml(plan.deliveryTime || 'Delivery in 3-5 Days')}</span>
           </div>
 
           <ul class="space-y-3 text-xs ${isPopular ? 'text-slate-200' : 'text-slate-300'}">
@@ -530,8 +512,8 @@ function initDevCraftSite() {
           </ul>
         </div>
 
-        <div class="pt-8">
-          <a href="${buildWhatsAppUrl(plan.whatsappQuery || `Hi! I want to book the ${plan.tierName} package.`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 ${isPopular ? 'py-3.5 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-extrabold shadow-lg shadow-whatsapp/25 hover:scale-105' : 'py-3 bg-slate-700 hover:bg-whatsapp text-white hover:text-slate-950 font-bold shadow-md'} px-4 rounded-xl text-sm transition-all">
+        <div class="pt-8 mt-auto">
+          <a href="${buildWhatsAppUrl(plan.whatsappQuery || `Hi! I want to book the ${plan.tierName} package.`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 ${isPopular ? 'py-3.5 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-extrabold shadow-lg shadow-whatsapp/25 hover:scale-105' : 'py-3 bg-transparent border-2 border-emerald-500/60 hover:bg-whatsapp hover:border-whatsapp text-emerald-400 hover:text-slate-950 font-bold'} px-4 rounded-xl text-sm transition-all">
             <i class="fa-brands fa-whatsapp text-lg"></i> Book on WhatsApp
           </a>
         </div>
@@ -555,7 +537,7 @@ function initDevCraftSite() {
           <i class="fa-solid ${escapeHtml(b.icon || 'fa-check')}"></i>
         </div>
         <div>
-          <h4 class="font-heading font-bold text-white text-base">${escapeHtml(b.title)}</h4>
+          <h3 class="font-heading font-bold text-white text-base">${escapeHtml(b.title)}</h3>
           <p class="text-xs text-slate-300 mt-1">${escapeHtml(b.desc)}</p>
         </div>
       `;
