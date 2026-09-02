@@ -1,50 +1,5 @@
 /* Custom CSS for DevCraft Web Solutions Portfolio */
 
-/* ==========================================================
-   Usability Fixes (see velora-usability-fixes.md for details)
-   ========================================================== */
-
-/* Fix #1 — Consistent type scale (shared sizes, avoids ad-hoc font sizes) */
-.text-h1 { font-size: 2.5rem; }
-.text-h2 { font-size: 2rem; }
-.text-h3 { font-size: 1.5rem; }
-.text-h4 { font-size: 1.25rem; }
-.text-body { font-size: 1rem; }
-.text-small { font-size: 0.875rem; }
-
-/* Fix #3 — service card description area gets a min-height so separators/lists
-   start at the same vertical position across a row */
-#services-container .service-card p.text-slate-300 {
-  min-height: 4.5rem;
-}
-
-/* Fix #3 (support) — push feature list + divider to the bottom of the card
-   consistently (service-card already uses flex flex-col justify-between) */
-#services-container .service-card ul {
-  margin-top: auto;
-}
-
-/* Fix #8 — harmonize vertical rhythm between the two Why-Us columns */
-#why-us #whyus-benefits-container {
-  gap: 1rem;
-}
-#why-us #whyus-steps-container {
-  gap: 1.5rem;
-}
-
-/* Fix #10 — shared WhatsApp primary button component so hero / form / process
-   CTAs share consistent sizing */
-.btn-whatsapp-primary {
-  min-width: 260px;
-}
-
-/* Fix #13 — align the two Why-Us column headings on the same baseline */
-#why-us .grid > div:first-child > span,
-#why-us .grid > div:last-child > h3 {
-  margin-top: 0;
-}
-
-
 /* Base smooth scrolling and styling */
 html {
   scroll-behavior: smooth;
