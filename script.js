@@ -422,6 +422,11 @@ function initDevCraftSite() {
   }
 
   // 3d. Projects Grid
+  function categoryDisplayLabel(cat) {
+    const map = { business: 'Business', ecommerce: 'E-Commerce', portfolio: 'Portfolio', landing: 'Landing Page' };
+    return map[cat] || (cat ? cat.charAt(0).toUpperCase() + cat.slice(1) : 'Demo');
+  }
+
   function renderProjectsDOM(projects) {
     const container = document.getElementById('projects-container');
     if (!container) return;
@@ -439,7 +444,7 @@ function initDevCraftSite() {
       card.innerHTML = `
         <div class="relative h-48 bg-gradient-to-tr from-slate-800 to-slate-700 p-6 flex flex-col justify-between overflow-hidden">
           <div class="flex justify-between items-center z-10">
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-900/60 text-slate-300 border border-slate-600/60">${escapeHtml(proj.category || 'Demo')}</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-900/60 text-slate-300 border border-slate-600/60">${escapeHtml(categoryDisplayLabel(proj.category))}</span>
             <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20"><i class="fa-solid fa-circle-check mr-1"></i> Live Ready</span>
           </div>
           <div class="text-left z-10">
@@ -450,10 +455,10 @@ function initDevCraftSite() {
         </div>
         <div class="p-6 space-y-4">
           <p class="text-xs text-slate-300">${escapeHtml(proj.desc)}</p>
-          <div class="flex flex-wrap gap-1.5 text-xs">
+          <div class="flex flex-wrap gap-1.5 text-sm">
             ${tagsHtml}
           </div>
-          <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between">
+          <div class="pt-5 mt-1 border-t border-slate-700/60 flex items-center justify-between">
             <a href="${buildWhatsAppUrl(proj.whatsappQuery || `Hi! I would like a website similar to ${proj.title}.`)}" target="_blank" class="w-full text-center py-2.5 px-3 rounded-lg bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-xs shadow-md shadow-whatsapp/20 transition-all">
               <i class="fa-brands fa-whatsapp mr-1"></i> I Want a Similar Website
             </a>
@@ -475,7 +480,7 @@ function initDevCraftSite() {
       const isPopular = plan.isPopular;
 
       card.className = isPopular
-        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl pt-12 pb-8 px-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100'
+        ? 'relative bg-slate-800/90 border-2 border-emerald-500 rounded-3xl pt-10 pb-8 px-8 flex flex-col justify-between shadow-2xl shadow-emerald-500/10 scale-100'
         : 'relative bg-slate-800/50 border border-slate-700 rounded-3xl pt-10 pb-8 px-8 flex flex-col justify-between hover:border-slate-600 transition-all';
 
       const popularBadge = isPopular
@@ -509,7 +514,7 @@ function initDevCraftSite() {
         </div>
 
         <div class="pt-8 mt-auto">
-          <a href="${buildWhatsAppUrl(plan.whatsappQuery || `Hi! I want to book the ${plan.tierName} package.`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 ${isPopular ? 'py-3.5 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-extrabold shadow-lg shadow-whatsapp/25 hover:scale-105' : 'py-3 bg-transparent border-2 border-emerald-500/60 hover:bg-whatsapp hover:border-whatsapp text-emerald-400 hover:text-slate-950 font-bold'} px-4 rounded-xl text-sm transition-all">
+          <a href="${buildWhatsAppUrl(plan.whatsappQuery || `Hi! I want to book the ${plan.tierName} package.`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 ${isPopular ? 'py-3.5 shadow-lg shadow-whatsapp/25 hover:scale-105' : 'py-3'} bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-4 rounded-xl text-sm transition-all">
             <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
           </a>
         </div>
@@ -599,47 +604,39 @@ function initDevCraftSite() {
   renderAll();
 
   /* ----------------------------------------------------
-     4. Typewriter Animation Engine
+     4. Word-Cycle Animation Engine (crossfade, never shows a
+     partial/truncated word — avoids the "broken mid-type"
+     look that character-by-character typewriters can have).
   ---------------------------------------------------- */
   const words = (site.hero?.typewriterWords && site.hero.typewriterWords.length > 0)
     ? site.hero.typewriterWords
     : ['Business Websites', 'E-Commerce Stores', 'Portfolio Websites', 'High-Converting Landing Pages', 'Custom Web Applications'];
 
   let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
   const typewriterElement = document.getElementById('typewriter-text');
-  const typingSpeed = 80;
-  const deletingSpeed = 45;
-  const pauseAfterTyping = 1800;
-  const pauseAfterDeleting = 120;
+  const displayDuration = 1800;
+  const fadeDuration = 250;
 
-  function typeEffect() {
+  function cycleWord() {
     if (!typewriterElement) return;
 
-    const currentWord = words[wordIndex] || 'Websites';
+    typewriterElement.style.transition = `opacity ${fadeDuration}ms ease`;
+    typewriterElement.style.opacity = '0';
 
-    if (isDeleting) {
-      charIndex--;
-      typewriterElement.textContent = currentWord.substring(0, charIndex);
-    } else {
-      charIndex++;
-      typewriterElement.textContent = currentWord.substring(0, charIndex);
-    }
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      isDeleting = true;
-      setTimeout(typeEffect, pauseAfterTyping);
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
+    setTimeout(() => {
       wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(typeEffect, pauseAfterDeleting);
-    } else {
-      setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
-    }
+      typewriterElement.textContent = words[wordIndex] || 'Websites';
+      typewriterElement.style.opacity = '1';
+    }, fadeDuration);
+
+    setTimeout(cycleWord, displayDuration + fadeDuration);
   }
 
-  typeEffect();
+  if (typewriterElement) {
+    typewriterElement.textContent = words[0] || 'Websites';
+    typewriterElement.style.opacity = '1';
+    setTimeout(cycleWord, displayDuration);
+  }
 
   // Sync cloud settings from Supabase if available
   if (typeof getSiteSettingsFromSupabase === 'function') {
@@ -804,6 +801,26 @@ Please confirm availability and discuss project scope!`;
     setInterval(() => {
       bubble.classList.remove('hidden');
     }, 14000);
+  }
+
+  /* ----------------------------------------------------
+     11. Show floating WhatsApp widget only after the user
+     scrolls past the hero section (reduces CTA redundancy
+     while the hero's own primary button is visible).
+  ---------------------------------------------------- */
+  const floatingWidget = document.getElementById('floating-widget-wrapper');
+  const heroSection = document.getElementById('home');
+  if (floatingWidget && heroSection) {
+    const revealFloatingWidget = () => {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      if (heroBottom < 80) {
+        floatingWidget.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+      } else {
+        floatingWidget.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+      }
+    };
+    window.addEventListener('scroll', revealFloatingWidget, { passive: true });
+    revealFloatingWidget();
   }
 }
 
