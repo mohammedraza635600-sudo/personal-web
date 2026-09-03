@@ -367,7 +367,7 @@ function initDevCraftSite() {
       const div = document.createElement('div');
       div.className = 'flex items-center gap-2.5 p-3 rounded-xl bg-slate-800/40 border border-slate-800';
       div.innerHTML = `
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 text-base">
           <i class="fa-solid ${escapeHtml(b.icon || 'fa-check')}"></i>
         </div>
         <div class="text-xs font-medium text-slate-300">${escapeHtml(b.text || '')}</div>
@@ -413,7 +413,7 @@ function initDevCraftSite() {
         </div>
         <div class="pt-6 opacity-90 group-hover:opacity-100 transition-opacity">
           <a href="${buildWhatsAppUrl(srv.whatsappQuery || `Hi! I want to order ${srv.title}`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-700/60 group-hover:bg-whatsapp text-slate-200 group-hover:text-slate-950 font-bold text-xs transition-all">
-            <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
+            <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp
           </a>
         </div>
       `;
@@ -434,7 +434,7 @@ function initDevCraftSite() {
 
     projects.forEach(proj => {
       const card = document.createElement('div');
-      card.className = 'project-item group bg-slate-800/40 border border-slate-700/60 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300';
+      card.className = 'project-item group bg-slate-800/40 border border-slate-700/60 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 flex flex-col h-full';
       card.setAttribute('data-category', proj.category || 'business');
 
       const tagsHtml = (proj.tags || [])
@@ -453,12 +453,12 @@ function initDevCraftSite() {
           </div>
           <div class="absolute inset-0 bg-emerald-500/5 group-hover:bg-emerald-500/10 transition-colors"></div>
         </div>
-        <div class="p-6 space-y-4">
+        <div class="p-6 space-y-4 flex flex-col flex-1">
           <p class="text-xs text-slate-300">${escapeHtml(proj.desc)}</p>
           <div class="flex flex-wrap gap-1.5 text-sm">
             ${tagsHtml}
           </div>
-          <div class="pt-5 mt-1 border-t border-slate-700/60 flex items-center justify-between">
+          <div class="pt-5 mt-auto border-t border-slate-700/60 flex items-center justify-between">
             <a href="${buildWhatsAppUrl(proj.whatsappQuery || `Hi! I would like a website similar to ${proj.title}.`)}" target="_blank" class="w-full text-center py-2.5 px-3 rounded-lg bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-xs shadow-md shadow-whatsapp/20 transition-all">
               <i class="fa-brands fa-whatsapp mr-1"></i> I Want a Similar Website
             </a>
@@ -500,12 +500,12 @@ function initDevCraftSite() {
             <p class="text-xs text-slate-400">${escapeHtml(plan.desc || '')}</p>
           </div>
 
-          <div class="py-4 border-y border-slate-700/60">
+          <div class="py-4 border-y border-slate-700/60 space-y-1">
             <div class="flex items-baseline gap-2">
               <span class="text-3xl sm:text-4xl font-extrabold text-white">${escapeHtml(plan.price || '₹0')}</span>
               <span class="text-xs text-slate-400">${escapeHtml(plan.unit || '/ one-time')}</span>
             </div>
-            <span class="text-xs text-emerald-400 font-semibold block mt-1">${escapeHtml(plan.deliveryTime || 'Delivery in 3-5 Days')}</span>
+            <span class="text-xs text-emerald-400 font-semibold block">${escapeHtml(plan.deliveryTime || 'Delivery in 3-5 Days')}</span>
           </div>
 
           <ul class="space-y-3 text-xs ${isPopular ? 'text-slate-200' : 'text-slate-300'}">
@@ -573,20 +573,22 @@ function initDevCraftSite() {
     if (!container) return;
     container.innerHTML = '';
 
-    faqs.forEach(faq => {
-      const item = document.createElement('div');
-      item.className = 'faq-item bg-slate-800/50 border border-slate-700/70 rounded-2xl overflow-hidden';
-      item.innerHTML = `
-        <button class="faq-question w-full p-5 text-left flex justify-between items-center font-heading font-semibold text-white text-sm sm:text-base hover:text-emerald-400 transition-colors">
-          <span>${escapeHtml(faq.question)}</span>
-          <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-700/40 pt-3">
-          ${escapeHtml(faq.answer)}
-        </div>
-      `;
-      container.appendChild(item);
-    });
+    faqs
+      .filter(faq => faq && faq.question && faq.answer)
+      .forEach(faq => {
+        const item = document.createElement('div');
+        item.className = 'faq-item bg-slate-800/50 border border-slate-700/70 rounded-2xl overflow-hidden';
+        item.innerHTML = `
+          <button class="faq-question w-full p-5 text-left flex justify-between items-center font-heading font-semibold text-white text-sm sm:text-base hover:text-emerald-400 transition-colors">
+            <span>${escapeHtml(faq.question)}</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-700/40 pt-3">
+            ${escapeHtml(faq.answer)}
+          </div>
+        `;
+        container.appendChild(item);
+      });
 
     initFaqAccordion();
   }
