@@ -406,13 +406,13 @@ function initDevCraftSite() {
             <i class="fa-solid ${escapeHtml(srv.icon || 'fa-code')}"></i>
           </div>
           <h3 class="font-heading font-bold text-xl text-white group-hover:text-emerald-400 transition-colors">${escapeHtml(srv.title)}</h3>
-          <p class="text-slate-300 text-sm leading-relaxed pb-2 min-h-[72px] sm:min-h-[48px]">${escapeHtml(srv.desc)}</p>
+          <p class="text-slate-300 text-sm leading-relaxed pb-2 min-h-[72px]">${escapeHtml(srv.desc)}</p>
           <ul class="space-y-2 text-xs text-slate-300 pt-4 mt-2 border-t border-slate-700/60">
             ${featuresHtml}
           </ul>
         </div>
-        <div class="pt-6">
-          <a href="${buildWhatsAppUrl(srv.whatsappQuery || `Hi! I want to order ${srv.title}`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-xs shadow-md shadow-whatsapp/20 transition-all">
+        <div class="pt-6 opacity-90 group-hover:opacity-100 transition-opacity">
+          <a href="${buildWhatsAppUrl(srv.whatsappQuery || `Hi! I want to order ${srv.title}`)}" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-700/60 group-hover:bg-whatsapp text-slate-200 group-hover:text-slate-950 font-bold text-xs transition-all">
             <i class="fa-brands fa-whatsapp text-sm"></i> Order via WhatsApp
           </a>
         </div>
@@ -433,14 +433,14 @@ function initDevCraftSite() {
       card.setAttribute('data-category', proj.category || 'business');
 
       const tagsHtml = (proj.tags || [])
-        .map(t => `<span class="px-2 py-0.5 rounded bg-slate-800">${escapeHtml(t)}</span>`)
+        .map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-700/80 text-slate-200 font-medium">${escapeHtml(t)}</span>`)
         .join('');
 
       card.innerHTML = `
         <div class="relative h-48 bg-gradient-to-tr from-slate-800 to-slate-700 p-6 flex flex-col justify-between overflow-hidden">
           <div class="flex justify-between items-center z-10">
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">${escapeHtml(proj.category || 'Demo')}</span>
-            <span class="text-xs text-slate-400"><i class="fa-solid fa-eye mr-1"></i> Live Ready</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-900/60 text-slate-300 border border-slate-600/60">${escapeHtml(proj.category || 'Demo')}</span>
+            <span class="text-xs font-semibold text-emerald-300 bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20"><i class="fa-solid fa-circle-check mr-1"></i> Live Ready</span>
           </div>
           <div class="text-left z-10">
             <i class="fa-solid ${escapeHtml(proj.icon || 'fa-laptop-code')} text-4xl text-emerald-400/80 mb-2"></i>
@@ -450,7 +450,7 @@ function initDevCraftSite() {
         </div>
         <div class="p-6 space-y-4">
           <p class="text-xs text-slate-300">${escapeHtml(proj.desc)}</p>
-          <div class="flex flex-wrap gap-1.5 text-xs text-slate-400">
+          <div class="flex flex-wrap gap-1.5 text-xs">
             ${tagsHtml}
           </div>
           <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between">
