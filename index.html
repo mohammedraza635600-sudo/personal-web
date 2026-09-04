@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="meta-title">Velora Web Solutions | Professional Web Development & WhatsApp Inquiries</title>
   <meta name="description" id="meta-desc" content="Professional web development services for businesses, e-commerce stores, and personal portfolios by Velora. Direct WhatsApp: +91 8200890373." />
+  <link rel="canonical" href="https://webcreater.vercel.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Velora Web Solutions" />
+  <meta property="og:title" content="Velora Web Solutions | Professional Web Development & WhatsApp Inquiries" />
+  <meta property="og:description" content="Professional web development services for businesses, e-commerce stores, and personal portfolios. Direct WhatsApp: +91 8200890373." />
+  <meta property="og:url" content="https://webcreater.vercel.app/" />
+  <!-- TODO: replace with a real 1200x630 screenshot of the site or a branded share image and upload as /og-image.png -->
+  <meta property="og:image" content="https://webcreater.vercel.app/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Velora Web Solutions | Professional Web Development" />
+  <meta name="twitter:description" content="Professional web development services for businesses, e-commerce stores, and personal portfolios. Direct WhatsApp: +91 8200890373." />
+  <meta name="twitter:image" content="https://webcreater.vercel.app/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Velora Web Solutions",
+    "url": "https://webcreater.vercel.app/",
+    "description": "Professional web development services: business websites, e-commerce stores, portfolios, landing pages and custom web applications.",
+    "areaServed": "Worldwide",
+    "priceRange": "₹₹",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-8200890373",
+      "contactType": "sales",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,13 +208,13 @@
           <!-- Action Buttons -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
             <!-- Main WhatsApp CTA -->
-            <a id="hero-primary-cta" href="https://wa.me/918200890373?text=Hello!%20I%20would%20like%20to%20inquire%20about%20building%20a%20website.%20Please%20share%20details%20and%20pricing." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-7 py-3.5 rounded-xl text-base shadow-md shadow-whatsapp/15 transition-all hover:scale-105 active:scale-95 group">
+            <a id="hero-primary-cta" href="https://wa.me/918200890373?text=Hello!%20I%20would%20like%20to%20inquire%20about%20building%20a%20website.%20Please%20share%20details%20and%20pricing." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-7 py-4 rounded-xl text-base shadow-xl shadow-whatsapp/25 transition-all hover:scale-105 active:scale-95 group">
               <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
               <span id="hero-primary-text">Chat on WhatsApp</span>
             </a>
 
             <!-- Secondary CTA -->
-            <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-700/70 hover:bg-slate-700 text-white border border-slate-500/60 hover:border-emerald-500/50 font-semibold px-6 py-3.5 rounded-xl text-base transition-all">
+            <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600 font-semibold px-6 py-4 rounded-xl text-base transition-all hover:text-white">
               <i class="fa-solid fa-laptop-code text-emerald-400"></i>
               <span id="hero-secondary-text">View Portfolio & Demos</span>
             </a>
@@ -193,12 +231,12 @@
         <div class="lg:col-span-5">
           <div class="relative">
             <!-- Glow effect behind card -->
-            <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-lg opacity-[0.06]"></div>
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-lg opacity-10"></div>
             
             <!-- Quick WhatsApp Contact Card -->
-            <div class="relative bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-sm space-y-6">
+            <div class="relative bg-slate-800/70 border border-slate-700/60 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-lg space-y-6">
               
-              <div class="flex items-center justify-between gap-3 pb-4 border-b border-slate-700/70">
+              <div class="flex items-center justify-between pb-4 border-b border-slate-700/70">
                 <div class="flex items-center gap-3">
                   <div class="relative">
                     <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-emerald-400 text-xl font-bold border border-emerald-500/40">
@@ -207,7 +245,7 @@
                     <span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-900"></span>
                   </div>
                   <div>
-                    <h2 class="font-heading font-semibold text-white text-sm" id="card-title-display">Web Developer</h2>
+                    <h2 class="font-heading font-bold text-white text-base" id="card-title-display">Web Developer</h2>
                     <p class="text-xs text-emerald-400 font-medium flex items-center gap-1">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                       Online on WhatsApp
@@ -215,7 +253,7 @@
                   </div>
                 </div>
 
-                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-700 text-slate-300 font-mono self-center shrink-0" id="card-phone-display">
+                <span class="text-xs px-2.5 py-1 rounded-full bg-slate-700 text-slate-300 font-mono" id="card-phone-display">
                   +91 8200890373
                 </span>
               </div>
@@ -267,10 +305,10 @@
         <!-- Filter Tabs -->
         <div class="flex flex-wrap items-center justify-center gap-2.5 pt-4" id="portfolio-filters">
           <button class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-500 text-slate-950 transition-all" data-filter="all">All Designs</button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-200 border border-slate-600 hover:border-emerald-500/60 hover:text-white transition-all" data-filter="business">Business</button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-200 border border-slate-600 hover:border-emerald-500/60 hover:text-white transition-all" data-filter="ecommerce">E-Commerce</button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-200 border border-slate-600 hover:border-emerald-500/60 hover:text-white transition-all" data-filter="portfolio">Portfolio</button>
-          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-200 border border-slate-600 hover:border-emerald-500/60 hover:text-white transition-all" data-filter="landing">Landing Page</button>
+          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="business">Business</button>
+          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="ecommerce">E-Commerce</button>
+          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="portfolio">Portfolio</button>
+          <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="landing">Landing Page</button>
         </div>
       </div>
 
@@ -314,28 +352,26 @@
             I collaborate directly with you via WhatsApp. No middlemen, no delayed ticket queues, and no inflated agency fees. Clear milestones, rapid turnaround, and guaranteed satisfaction.
           </p>
 
-          <div class="space-y-6 pt-2" id="whyus-benefits-container">
+          <div class="space-y-4 pt-2" id="whyus-benefits-container">
             <!-- Dynamic Benefits -->
           </div>
         </div>
 
         <!-- Right: 4-Step Process -->
-        <div class="lg:col-span-6 bg-slate-800/60 border border-slate-700 rounded-3xl p-6 sm:p-8 flex flex-col h-full">
-          <span class="text-xs font-bold tracking-widest text-transparent select-none" aria-hidden="true">.</span>
-          <h3 class="font-heading font-bold text-xl text-white mt-1 mb-6">4 Simple Steps to Launch Your Website</h3>
+        <div class="lg:col-span-6 bg-slate-800/60 border border-slate-700 rounded-3xl p-6 sm:p-8">
+          <h3 class="font-heading font-bold text-xl text-white mb-6">4 Simple Steps to Launch Your Website</h3>
           
           <div class="space-y-6" id="whyus-steps-container">
             <!-- Dynamic Steps -->
           </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-700 text-left">
+            <a id="process-cta-btn" href="https://wa.me/918200890373?text=Hi!%20Let's%20start%20with%20Step%201%20for%20my%20website." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-lg hover:scale-105">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
+            </a>
+          </div>
         </div>
 
-      </div>
-
-      <!-- CTA centered across both columns, so it doesn't feel tied to (and floating below) the shorter column -->
-      <div class="mt-10 text-center">
-        <a id="process-cta-btn" href="https://wa.me/918200890373?text=Hi!%20Let's%20start%20with%20Step%201%20for%20my%20website." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-lg hover:scale-105">
-          <i class="fa-brands fa-whatsapp text-lg"></i> Chat on WhatsApp
-        </a>
       </div>
 
     </div>
@@ -345,11 +381,11 @@
   <section id="contact" class="pt-12 pb-20 bg-slate-950/80 border-t border-slate-800/80">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-8 space-y-3">
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
         <span class="text-xs font-bold tracking-widest text-emerald-400">Get an Instant Quotation</span>
         <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Project Requirement Form</h2>
         <p class="text-slate-400 text-xs sm:text-sm">
-          Fill in your project specifications below. Tapping "Chat on WhatsApp" will automatically format and send your inquiry directly to WhatsApp (<span id="form-whatsapp-display">8200890373</span>).
+          Fill in your project specifications below. Clicking submit will automatically format and send your inquiry directly to WhatsApp (<span id="form-whatsapp-display">8200890373</span>).
         </p>
       </div>
 
@@ -361,13 +397,13 @@
             <!-- Full Name -->
             <div class="space-y-2">
               <label for="client-name" class="block text-xs font-semibold text-slate-300">Your Full Name <span class="text-red-400">*</span></label>
-              <input type="text" id="client-name" required placeholder="e.g. Alex Johnson" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-600 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
+              <input type="text" id="client-name" required placeholder="e.g. Alex Johnson" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
             </div>
 
             <!-- Phone / WhatsApp Number -->
             <div class="space-y-2">
               <label for="client-phone" class="block text-xs font-semibold text-slate-300">Your Phone / WhatsApp Number (optional)</label>
-              <input type="tel" id="client-phone" placeholder="e.g. +1 555 123 4567" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-600 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
+              <input type="tel" id="client-phone" placeholder="e.g. +1 555 123 4567" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors" />
             </div>
           </div>
 
@@ -375,8 +411,7 @@
             <!-- Website Type -->
             <div class="space-y-2">
               <label for="website-type" class="block text-xs font-semibold text-slate-300">What Type of Website Do You Need? <span class="text-red-400">*</span></label>
-              <select id="website-type" required class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-600 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
-                <option value="" selected disabled>Select website type...</option>
+              <select id="website-type" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
                 <option value="Business / Corporate Website">Business / Corporate Website</option>
                 <option value="E-Commerce / Online Shopping Store">E-Commerce / Online Store</option>
                 <option value="Personal Portfolio / Resume">Personal Portfolio / Resume</option>
@@ -388,11 +423,10 @@
 
             <!-- Budget Range -->
             <div class="space-y-2">
-              <label for="budget-range" class="block text-xs font-semibold text-slate-300">Estimated Budget Range (optional)</label>
-              <select id="budget-range" class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-600 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
-                <option value="" selected disabled>Select budget range...</option>
+              <label for="budget-range" class="block text-xs font-semibold text-slate-300">Estimated Budget Range</label>
+              <select id="budget-range" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors">
                 <option value="₹3,000 - ₹6,000 (Starter)">₹3,000 - ₹6,000 (Starter)</option>
-                <option value="₹6,000 - ₹12,000 (Business)">₹6,000 - ₹12,000 (Business)</option>
+                <option value="₹6,000 - ₹12,000 (Business)" selected>₹6,000 - ₹12,000 (Business)</option>
                 <option value="₹12,000 - ₹25,000+ (E-Commerce / Pro)">₹12,000 - ₹25,000+ (E-Commerce / Pro)</option>
                 <option value="Consultation Needed">Let's discuss on WhatsApp first</option>
               </select>
@@ -401,16 +435,16 @@
 
           <!-- Project Details / Notes -->
           <div class="space-y-2 pt-2">
-            <label for="project-notes" class="block text-xs font-semibold text-slate-300">Project Requirements & Notes (optional)</label>
-            <p id="project-notes-hint" class="text-xs text-slate-400">Example: payment gateway, 5 pages, appointment booking, reference links.</p>
-            <textarea id="project-notes" rows="7" aria-describedby="project-notes-hint" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl bg-slate-900/60 border border-slate-600 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+            <label for="project-notes" class="block text-xs font-semibold text-slate-300">Project Requirements & Notes</label>
+            <textarea id="project-notes" rows="7" aria-describedby="project-notes-hint" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+            <p id="project-notes-hint" class="text-xs text-slate-500">Example: payment gateway, 5 pages, appointment booking, reference links.</p>
           </div>
 
           <!-- Submit Button -->
           <div class="pt-2">
-            <button type="submit" class="w-full sm:w-auto sm:mx-auto sm:min-w-[280px] block py-3.5 px-8 rounded-xl bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-whatsapp/10 hover:scale-[1.01] active:scale-[0.99] transition-all">
+            <button type="submit" class="w-full sm:w-auto sm:mx-auto sm:min-w-[320px] block py-4 px-10 rounded-xl bg-whatsapp hover:bg-whatsapp-hover text-slate-950 font-heading font-extrabold text-base flex items-center justify-center gap-3 shadow-md shadow-whatsapp/10 hover:scale-[1.01] active:scale-[0.99] transition-all">
               <i class="fa-brands fa-whatsapp text-2xl"></i>
-              <span>Chat on WhatsApp</span>
+              <span>Chat on WhatsApp (<span class="submit-btn-phone">8200890373</span>)</span>
             </button>
             <p class="text-center text-xs text-slate-400 mt-3">
               <i class="fa-solid fa-lock text-emerald-400 mr-1"></i> Instant direct connection. 100% private and secure.
@@ -428,7 +462,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <span class="text-xs font-bold tracking-widest text-emerald-400">Frequently Asked Questions</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Frequently Asked Questions</span>
         <h2 class="font-heading font-extrabold text-3xl text-white">Got Questions? We Have Answers</h2>
       </div>
 
@@ -509,8 +543,9 @@
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-xs">
         <p id="footer-copyright-display">&copy; 2026 Velora Web Solutions. All rights reserved.</p>
         <div class="flex items-center gap-4">
-          <a href="admin.html" class="text-slate-600 hover:text-slate-400 transition-colors" title="Site administrator access only" rel="nofollow noindex">
+          <a href="admin.html" class="inline-flex items-center gap-1.5 text-slate-400 hover:text-emerald-400 transition-colors py-1 px-2.5 rounded-lg bg-slate-900 border border-slate-800">
             <i class="fa-solid fa-lock text-[10px]"></i>
+            <span>Admin Customizer</span>
           </a>
         </div>
       </div>
@@ -519,7 +554,7 @@
   </footer>
 
   <!-- Floating WhatsApp Chat Widget -->
-  <div id="floating-widget-wrapper" class="fixed bottom-8 right-6 sm:bottom-10 sm:right-8 z-50 flex items-center gap-3 opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
+  <div class="fixed bottom-8 right-6 sm:bottom-10 sm:right-8 z-50 flex items-center gap-3">
     
     <!-- Pulse Message Bubble (hidden: redundant with the floating button itself) -->
     <div id="whatsapp-bubble" class="hidden items-center gap-2 bg-slate-900/95 border border-emerald-500/40 text-slate-100 px-4 py-2 rounded-2xl shadow-xl backdrop-blur-md text-xs">
